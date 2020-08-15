@@ -9,6 +9,12 @@
     var hasEditContentPermission = await AuthorizationService.AuthorizeAsync(User, OrchardCore.Contents.Permissions.EditContent, contentItem);
 }
 
-<a edit-for="@contentItem" asp-route-returnUrl="@FullRequestPath" class="btn btn-primary btn-sm @(hasEditContentPermission ? string.Empty : "disabled")">@T["Edit"]</a>
+@if(hasEditContentPermission)
+{
+    <a edit-for="@contentItem" asp-route-returnUrl="@FullRequestPath" class="btn btn-primary btn-sm">@T["Edit"]</a>
+}
 
-<a display-for="@contentItem" class="btn btn-success btn-sm @(hasPublished ? string.Empty : "disabled")" itemprop="">@T["View"]</a>
+@if (hasPublished)
+{
+    <a display-for="@contentItem" class="btn btn-success btn-sm" itemprop="">@T["View"]</a>
+}

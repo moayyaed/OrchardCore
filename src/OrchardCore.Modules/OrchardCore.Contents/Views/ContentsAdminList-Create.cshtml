@@ -19,7 +19,10 @@
                 <div class="dropdown-menu dropdown-menu-right scrollable" aria-labelledby="new-dropdown">
                     @foreach (var item in Model.CreatableTypes)
                     {
-                        <a class="dropdown-item @(hasEditContentPermission ? string.Empty : "disabled")" href="@Url.RouteUrl(new { area = "OrchardCore.Contents", controller = "Admin", action = "Create", id = @item.Value })">@T[item.Text]</a>
+                        if(hasEditContentPermission)
+                        {
+                            <a class="dropdown-item" href="@Url.RouteUrl(new { area = "OrchardCore.Contents", controller = "Admin", action = "Create", id = @item.Value })">@T[item.Text]</a>
+                        }
                     }
                 </div>
             }
